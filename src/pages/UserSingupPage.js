@@ -1,6 +1,7 @@
 import React from "react";
 import { signup } from "../api/apiCalls";
 import Input from "../component/Input";
+import {withTranslation} from 'react-i18next'
 
 class UserSignupPage extends React.Component {
   state = {
@@ -57,11 +58,10 @@ class UserSignupPage extends React.Component {
   render() {
     const { pendingApiCall, errors } = this.state;
     const { username, displayName, password, passwordRepeat } = errors;
-
     return (
       <div className="container">
         <form>
-          <h1 className="text-center">Sign Up</h1>
+          <h1 className="text-center">{this.props.t("Sign Up")}</h1>
           <Input
             name="username"
             label="Username"
@@ -101,4 +101,5 @@ class UserSignupPage extends React.Component {
     );
   }
 }
-export default UserSignupPage;
+const UserSignupPageWithTranslation = withTranslation()(UserSignupPage);
+export default UserSignupPageWithTranslation;
